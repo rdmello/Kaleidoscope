@@ -1,6 +1,6 @@
 
 build: main.cpp
-	clang++ -Wall -Werror main.cpp -o main.run
+	clang++ -Wall -Werror -std=c++11 main.cpp -o main.run
 
 clean:
 	rm -f ./main.run
