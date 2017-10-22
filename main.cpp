@@ -14,6 +14,9 @@
 #include <cstdlib>
 #include <cassert>
 
+/* for llvm::make_unique */
+#include "llvm/ADT/STLExtras.h"
+
 /*
  * CH 1: BUILDING A LEXER
  */
@@ -189,6 +192,13 @@ std::unique_ptr<PrototypeAST> LogErrorP(const char* Str)
     return nullptr;    
 }
 
+// numberexpr ::= number
+static std::unique_ptr<ExprAST> ParseNumberExpr()
+{
+    auto Result = llvm::make_unique<NumberExprAST>(NumVal);
+    getNextToken(); // consume the number
+    return std::move(Result);
+}
 
 int main()
 {
